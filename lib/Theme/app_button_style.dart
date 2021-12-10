@@ -9,4 +9,12 @@ abstract class AppButtonStyle {
       ),
     ),
   );
+
+  static final ButtonStyle communityButton = ButtonStyle(
+    backgroundColor: MaterialStateProperty.all(Colors.white),
+    foregroundColor: MaterialStateProperty.all(const Color(0xFF235ea7)),
+    textStyle: MaterialStateProperty.all(
+      const TextStyle(fontSize: 18.72, fontWeight: FontWeight.bold),
+    ),
+  );
 }
