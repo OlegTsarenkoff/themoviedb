@@ -1,4 +1,7 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:themoviedb/Theme/app_button_style.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 
 class AuthWidget extends StatefulWidget {
   const AuthWidget({Key? key}) : super(key: key);
@@ -27,13 +30,14 @@ class _HeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const textStyle = TextStyle(color: Colors.black, fontSize: 16);
+    const accentColor = Color(0xFF01B4E4);
 
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          Text(
+        children: [
+          const Text(
             'Login to your account',
             style: TextStyle(
               fontSize: 23,
@@ -41,24 +45,62 @@ class _HeaderWidget extends StatelessWidget {
               color: Colors.black,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
-          Text(
-            'In order to use the editing and rating capabilities of TMDB, as well as get personal recommendations you will need to login to your account. If you do not have an account, registering for an account is free and simple. Click here to get started.',
-            style: textStyle,
+          RichText(
+            text: TextSpan(children: [
+              const TextSpan(
+                text:
+                    "In order to use the editing and rating capabilities of TMDB, as well as get personal recommendations you will need to login to your account. If you do not have an account, registering for an account is free and simple. ",
+                style: textStyle,
+              ),
+              TextSpan(
+                text: "Click here",
+                style: const TextStyle(
+                  fontSize: 16,
+                  color: accentColor,
+                  decoration: TextDecoration.underline,
+                ),
+                recognizer: TapGestureRecognizer()
+                  ..onTap = null, // need link to registred
+              ),
+              const TextSpan(
+                text: " to get started.",
+                style: textStyle,
+              ),
+            ]),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          Text(
-            'If you signed up but didn`t get your verification email, click here to have it resent.',
-            style: textStyle,
+          RichText(
+            text: TextSpan(children: [
+              const TextSpan(
+                text:
+                    "If you signed up but didn`t get your verification email, ",
+                style: textStyle,
+              ),
+              TextSpan(
+                text: "click here",
+                style: const TextStyle(
+                  fontSize: 16,
+                  color: accentColor,
+                  decoration: TextDecoration.underline,
+                ),
+                recognizer: TapGestureRecognizer()
+                  ..onTap = null, // need link to reset password
+              ),
+              const TextSpan(
+                text: " to have it resent.",
+                style: textStyle,
+              ),
+            ]),
           ),
-          SizedBox(
+          const SizedBox(
             height: 35,
           ),
-          _FormWidget(),
+          const _FormWidget(),
         ],
       ),
     );
@@ -118,7 +160,7 @@ class __FormWidgetState extends State<_FormWidget> {
         Row(
           children: [
             TextButton(
-              onPressed: () => {},
+              onPressed: () => {}, // need link to HomePage
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(colorButton),
                 foregroundColor: MaterialStateProperty.all(Colors.white),
@@ -131,19 +173,12 @@ class __FormWidgetState extends State<_FormWidget> {
               ),
               child: const Text('Login'),
             ),
-            SizedBox(
+            const SizedBox(
               width: 30,
             ),
             TextButton(
-              onPressed: () => {},
-              style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all(colorButton),
-                textStyle: MaterialStateProperty.all(
-                  const TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
-              ),
+              onPressed: () => {}, // need link to RegistredPage
+              style: AppButtonStyle.linkButton,
               child: const Text('Reset password'),
             )
           ],
