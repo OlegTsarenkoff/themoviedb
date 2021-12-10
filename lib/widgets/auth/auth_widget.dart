@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:themoviedb/Theme/app_button_style.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class AuthWidget extends StatefulWidget {
   const AuthWidget({Key? key}) : super(key: key);
@@ -11,17 +11,59 @@ class AuthWidget extends StatefulWidget {
 }
 
 class _AuthWidgetState extends State<AuthWidget> {
+  final String movieDBImage = 'assets/images/themoviedb.svg';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('THEMOVIEDB'),
+          leading: _buildMenuActionButton(_onTapMenu, Icons.menu),
+          centerTitle: true,
+          title: Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: SvgPicture.asset(
+              movieDBImage,
+              height: 40,
+              width: 55,
+            ),
+          ),
+          actions: [
+            _buildMenuActionButton(_onTapProfile, Icons.person),
+            _buildMenuActionButton(_onTapSearch, Icons.search),
+            const SizedBox(
+              width: 5,
+            )
+          ],
         ),
         body: ListView(
           children: const [_HeaderWidget()],
         ));
   }
 }
+
+_buildMenuActionButton(
+  Function() onPressed,
+  IconData icon,
+) =>
+    IconButton(
+      onPressed: onPressed,
+      icon: Icon(icon),
+      splashRadius: 20,
+    );
+
+////////////////////////////////////////////////////////////////////////////////
+_onTapProfile() {
+  print('profile');
+}
+
+_onTapSearch() {
+  print('search');
+}
+
+_onTapMenu() {
+  print('menu');
+}
+////////////////////////////////////////////////////////////////////////////////
 
 //Header (text, forms/buttons, )
 class _HeaderWidget extends StatelessWidget {
@@ -31,7 +73,10 @@ class _HeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     const textStyle = TextStyle(color: Colors.black, fontSize: 16);
     const accentColor = Color(0xFF01B4E4);
-
+    var l = [
+      1,
+      ...[2, 32]
+    ];
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Column(
@@ -63,7 +108,9 @@ class _HeaderWidget extends StatelessWidget {
                   decoration: TextDecoration.underline,
                 ),
                 recognizer: TapGestureRecognizer()
-                  ..onTap = null, // need link to registred
+                  ..onTap = () {
+                    print('hikhk');
+                  }, // need link to registred
               ),
               const TextSpan(
                 text: " to get started.",
