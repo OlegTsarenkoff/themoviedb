@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:themoviedb/widgets/auth/auth_widget.dart';
+import 'package:themoviedb/widgets/auth_screen/auth_view.dart';
 
 extension on LinkTabs {
   get name {
@@ -78,8 +78,15 @@ class InfoBlock extends StatelessWidget {
       children: [
         Text(
           tab.name.toUpperCase(),
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 20.16,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-        ...tab.content.map((link) => AppLink(link))
+        SizedBox(height: 4),
+        ...tab.content.map((link) => AppLink(link)),
+        SizedBox(height: 20),
       ],
     );
   }
@@ -93,7 +100,12 @@ class AppLink extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       name,
-      style: TextStyle(),
+      style: const TextStyle(
+        color: Colors.white,
+        fontSize: 17.28,
+        fontWeight: FontWeight.w400,
+        height: 1.45,
+      ),
     );
   }
 }

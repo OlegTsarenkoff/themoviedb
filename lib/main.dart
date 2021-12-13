@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:themoviedb/widgets/auth/auth_widget.dart';
+import 'package:themoviedb/widgets/auth_screen/auth_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+        scaffoldBackgroundColor: Color.fromRGBO(3, 37, 65, 1),
         appBarTheme: const AppBarTheme(
           backgroundColor: Color.fromRGBO(3, 37, 65, 1),
         ),
