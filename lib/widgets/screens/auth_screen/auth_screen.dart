@@ -1,58 +1,56 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:themoviedb/Theme/app_button_style.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'info_block_wrapper.dart';
+import 'package:themoviedb/widgets/app_bar/app_bar.dart';
+import 'info_box/info_block_wrapper.dart';
 
 enum LinkTabs { theBasics, getInvolved, community, legal }
 
 class AuthWidget extends StatefulWidget {
-  const AuthWidget({Key? key}) : super(key: key);
+  AuthWidget({Key? key}) : super(key: key);
 
   @override
   _AuthWidgetState createState() => _AuthWidgetState();
 }
 
 class _AuthWidgetState extends State<AuthWidget> {
-  final String movieDBImage = 'assets/images/themoviedb.svg';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: CustomScrollView(
       slivers: [
-        SliverAppBar(
-          leading: _buildMenuActionButton(_onTapMenu, Icons.menu),
-          centerTitle: true,
-          title: Padding(
-            padding: const EdgeInsets.only(bottom: 8.0),
-            child: SvgPicture.asset(
-              movieDBImage,
-              height: 40,
-              width: 55,
-            ),
-          ),
-          actions: [
-            _buildMenuActionButton(_onTapProfile, Icons.person),
-            _buildMenuActionButton(_onTapSearch, Icons.search,
-                color: Colors.blue),
-            const SizedBox(
-              width: 5,
-            )
-          ],
-        ),
+        const AppBarWidget(),
         SliverToBoxAdapter(
           child: SingleChildScrollView(
             child: Column(
               children: [
-                _HeaderWidget(),
-                Container(
+                const _HeaderWidget(),
+                SizedBox(
                   height: 750,
                   width: double.infinity,
-                  child: _buildInfoSection(),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(
+                          height: 40,
+                        ),
+                        ElevatedButton(
+                          child: Text('Joun the community'.toUpperCase()),
+                          style: AppButtonStyle.communityButton,
+                          onPressed: () {},
+                        ),
+                        InfoBlockWrapper(LinkTabs.values),
+                      ],
+                    ),
+                  ),
                 ),
                 const Center(
-                  child: Text('build: a0.1.10.12.21'),
+                  child: Text(
+                    'build: a0.1.10.12.21',
+                    style: TextStyle(color: Colors.grey),
+                  ),
                 )
               ],
             ),
@@ -63,30 +61,7 @@ class _AuthWidgetState extends State<AuthWidget> {
   }
 }
 
-_buildInfoSection() => Padding(
-      padding: const EdgeInsets.only(left: 20.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(
-            height: 40,
-          ),
-          _buildJoinButton(),
-          const SizedBox(
-            height: 40,
-          ),
-          InfoBlockWrapper(LinkTabs.values),
-        ],
-      ),
-    );
-
-_buildJoinButton() => ElevatedButton(
-      child: Text('Joun the community'.toUpperCase()),
-      style: AppButtonStyle.communityButton,
-      onPressed: () {},
-    );
-
-// Header (text, forms/buttons, )
+// Header (title, text/buttons to reg, )
 class _HeaderWidget extends StatelessWidget {
   const _HeaderWidget({Key? key}) : super(key: key);
 
@@ -175,7 +150,7 @@ class _HeaderWidget extends StatelessWidget {
   }
 }
 
-// Form (login/pass, buttons)
+// Form (login/pass, auth buttons)
 class _FormWidget extends StatefulWidget {
   const _FormWidget({Key? key}) : super(key: key);
 
@@ -186,14 +161,14 @@ class _FormWidget extends StatefulWidget {
 class __FormWidgetState extends State<_FormWidget> {
   final _loginTextController = TextEditingController();
   final _passwordTextController = TextEditingController();
-  String? errorText = null;
+  String? errorText;
 
   void _auth() {
     final login = _loginTextController.text;
     final password = _passwordTextController.text;
-
     if (login == 'admin' && password == 'admin') {
       errorText = null;
+      Navigator.of(context).pushReplacementNamed('/main_screen');
     } else {
       errorText = 'Incorrect login or password!';
     }
@@ -291,27 +266,3 @@ class __FormWidgetState extends State<_FormWidget> {
     );
   }
 }
-
-// Functions
-_buildMenuActionButton(Function() onPressed, IconData icon, {Color? color}) =>
-    IconButton(
-      onPressed: onPressed,
-      icon: Icon(icon),
-      color: color ?? Colors.white,
-      splashRadius: 20,
-    );
-
-////////////////////////////////////////////////////////////////////////////////
-_onTapProfile() {
-  print('profile');
-}
-
-_onTapSearch() {
-  print('search');
-}
-
-_onTapMenu() {
-  print('menu');
-}
-
-////////////////////////////////////////////////////////////////////////////////

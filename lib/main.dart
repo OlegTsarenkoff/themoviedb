@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:themoviedb/widgets/auth_screen/auth_view.dart';
+import 'package:themoviedb/Theme/app_colors.dart';
+import 'package:themoviedb/widgets/screens/auth_screen/auth_screen.dart';
+import 'package:themoviedb/widgets/screens/main_screen/main_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -8,19 +10,27 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        scaffoldBackgroundColor: Color.fromRGBO(3, 37, 65, 1),
+        scaffoldBackgroundColor: AppColors.mainDarkBlue,
         appBarTheme: const AppBarTheme(
-          backgroundColor: Color.fromRGBO(3, 37, 65, 1),
+          backgroundColor: AppColors.mainDarkBlue,
+        ),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: AppColors.mainDarkBlue,
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.grey,
         ),
         primarySwatch: Colors.blue,
       ),
-      home: const AuthWidget(),
+      routes: {
+        '/auth': (context) => AuthWidget(),
+        '/main_screen': (context) => MainScreenWidget(),
+      },
+      initialRoute: '/auth',
     );
   }
 }
