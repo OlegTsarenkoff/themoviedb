@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:themoviedb/widgets/screens/auth_screen/auth_screen.dart';
+import 'package:themoviedb/widgets/info_box/info_block.dart';
 
 extension on LinkTabs {
   get name {
@@ -90,7 +90,7 @@ class InfoBlock extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 4),
+            const SizedBox(height: 3),
             ...tab.content.map((link) => AppLink(link)),
           ],
         )

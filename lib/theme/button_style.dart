@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:themoviedb/Theme/colors.dart';
 
 abstract class AppButtonStyle {
   static final ButtonStyle linkButton = ButtonStyle(
-    foregroundColor: MaterialStateProperty.all(const Color(0xFF01B4E4)),
+    foregroundColor: MaterialStateProperty.all(AppColors.linkButtonColor),
     textStyle: MaterialStateProperty.all(
       const TextStyle(
         fontSize: 16,
@@ -11,8 +12,8 @@ abstract class AppButtonStyle {
   );
 
   static final ButtonStyle communityButton = ButtonStyle(
-    backgroundColor: MaterialStateProperty.all(Colors.white),
-    foregroundColor: MaterialStateProperty.all(const Color(0xFF235ea7)),
+    backgroundColor: MaterialStateProperty.all(AppColors.backgroundColorApp),
+    foregroundColor: MaterialStateProperty.all(AppColors.communityButtonColor),
     textStyle: MaterialStateProperty.all(
       const TextStyle(fontSize: 18.72, fontWeight: FontWeight.bold),
     ),

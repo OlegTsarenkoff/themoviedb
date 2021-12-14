@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:themoviedb/resources/resources.dart';
 
 class AppBarWidget extends StatefulWidget {
-  const AppBarWidget({Key? key}) : super(key: key);
+  AppBarWidget(
+    this.scaffoldKey, {
+    Key? key,
+  }) : super(key: key);
+  GlobalKey<ScaffoldState> scaffoldKey;
 
   @override
   _AppBarWidgetState createState() => _AppBarWidgetState();
 }
-
-const String movieDBImage = 'assets/images/themoviedb.svg';
 
 class _AppBarWidgetState extends State<AppBarWidget> {
   @override
@@ -20,7 +23,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
       title: Padding(
         padding: const EdgeInsets.only(bottom: 8.0),
         child: SvgPicture.asset(
-          movieDBImage,
+          Svgs.themoviedb,
           height: 40,
           width: 55,
         ),
@@ -34,27 +37,25 @@ class _AppBarWidgetState extends State<AppBarWidget> {
       ],
     );
   }
-}
 
-// Functions
-_buildMenuActionButton(Function() onPressed, IconData icon, {Color? color}) =>
-    IconButton(
-      onPressed: onPressed,
-      icon: Icon(icon),
-      color: color ?? Colors.white,
-      splashRadius: 20,
-    );
+  // Functions
+  _buildMenuActionButton(Function() onPressed, IconData icon, {Color? color}) =>
+      IconButton(
+        onPressed: onPressed,
+        icon: Icon(icon),
+        color: color ?? Colors.white,
+        splashRadius: 20,
+      );
 
-////////////////////////////////////////////////////////////////////////////////
-_onTapProfile() {
-  print('profile');
-}
+  _onTapProfile() {
+    print('profile');
+  }
 
-_onTapSearch() {
-  print('search');
-}
+  _onTapSearch() {
+    print('search');
+  }
 
-_onTapMenu() {
-  print('menu');
+  _onTapMenu() {
+    widget.scaffoldKey.currentState?.openDrawer();
+  }
 }
-////////////////////////////////////////////////////////////////////////////////

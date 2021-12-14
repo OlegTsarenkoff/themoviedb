@@ -1,10 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:themoviedb/Theme/app_button_style.dart';
+import 'package:themoviedb/Theme/button_style.dart';
 import 'package:themoviedb/widgets/app_bar/app_bar.dart';
-import 'info_box/info_block_wrapper.dart';
-
-enum LinkTabs { theBasics, getInvolved, community, legal }
+import 'package:themoviedb/widgets/drawer/app_drawer.dart';
+import 'package:themoviedb/widgets/info_box/info_block.dart';
 
 class AuthWidget extends StatefulWidget {
   AuthWidget({Key? key}) : super(key: key);
@@ -13,51 +12,32 @@ class AuthWidget extends StatefulWidget {
   _AuthWidgetState createState() => _AuthWidgetState();
 }
 
+final GlobalKey<ScaffoldState> _key = GlobalKey();
+
 class _AuthWidgetState extends State<AuthWidget> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: CustomScrollView(
-      slivers: [
-        const AppBarWidget(),
-        SliverToBoxAdapter(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                const _HeaderWidget(),
-                SizedBox(
-                  height: 750,
-                  width: double.infinity,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 20.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(
-                          height: 40,
-                        ),
-                        ElevatedButton(
-                          child: Text('Joun the community'.toUpperCase()),
-                          style: AppButtonStyle.communityButton,
-                          onPressed: () {},
-                        ),
-                        InfoBlockWrapper(LinkTabs.values),
-                      ],
-                    ),
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+          drawer: DrawerWidget(),
+          key: _key,
+          body: CustomScrollView(
+            slivers: [
+              AppBarWidget(_key),
+              SliverToBoxAdapter(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: const [
+                      _HeaderWidget(),
+                      InfoBlockBottom(),
+                    ],
                   ),
                 ),
-                const Center(
-                  child: Text(
-                    'build: a0.1.10.12.21',
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
-      ],
-    ));
+              ),
+            ],
+          )),
+    );
   }
 }
 
@@ -80,7 +60,7 @@ class _HeaderWidget extends StatelessWidget {
             const Text(
               'Login to your account',
               style: TextStyle(
-                fontSize: 23,
+                fontSize: 24,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
               ),
@@ -140,7 +120,7 @@ class _HeaderWidget extends StatelessWidget {
               ]),
             ),
             const SizedBox(
-              height: 35,
+              height: 20,
             ),
             const _FormWidget(),
           ],
@@ -161,6 +141,7 @@ class _FormWidget extends StatefulWidget {
 class __FormWidgetState extends State<_FormWidget> {
   final _loginTextController = TextEditingController();
   final _passwordTextController = TextEditingController();
+  final nodeOne = FocusNode();
   String? errorText;
 
   void _auth() {
@@ -195,6 +176,18 @@ class __FormWidgetState extends State<_FormWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        if (errorText != null) ...[
+          Text(
+            errorText,
+            style: const TextStyle(
+              color: Colors.red,
+              fontSize: 17,
+            ),
+          ),
+        ],
+        const SizedBox(
+          height: 5,
+        ),
         const Text(
           'Username',
           style: textStyle,
@@ -205,6 +198,10 @@ class __FormWidgetState extends State<_FormWidget> {
         TextField(
           controller: _loginTextController,
           decoration: textFieldDecorator,
+          textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.emailAddress,
+          enableSuggestions: false,
+          autocorrect: false,
         ),
         const SizedBox(
           height: 25,
@@ -217,6 +214,8 @@ class __FormWidgetState extends State<_FormWidget> {
           height: 5,
         ),
         TextField(
+          onSubmitted: (value) => _auth(),
+          textInputAction: TextInputAction.join,
           controller: _passwordTextController,
           decoration: textFieldDecorator,
           obscureText: true,
@@ -227,7 +226,7 @@ class __FormWidgetState extends State<_FormWidget> {
         Row(
           children: [
             ElevatedButton(
-              onPressed: _auth, // need link to HomePage
+              onPressed: _auth,
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(colorButton),
                 foregroundColor: MaterialStateProperty.all(Colors.white),
@@ -250,18 +249,6 @@ class __FormWidgetState extends State<_FormWidget> {
             )
           ],
         ),
-        const SizedBox(
-          height: 5,
-        ),
-        if (errorText != null) ...[
-          Text(
-            errorText,
-            style: const TextStyle(
-              color: Colors.red,
-              fontSize: 17,
-            ),
-          ),
-        ],
       ],
     );
   }

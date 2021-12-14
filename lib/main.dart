@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:themoviedb/Theme/app_colors.dart';
-import 'package:themoviedb/widgets/screens/auth_screen/auth_screen.dart';
-import 'package:themoviedb/widgets/screens/main_screen/main_screen.dart';
+import 'package:themoviedb/Theme/colors.dart';
+import 'package:themoviedb/screens/auth_screen/auth_screen.dart';
+import 'package:themoviedb/screens/main_screen/main_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/auth': (context) => AuthWidget(),
-        '/main_screen': (context) => MainScreenWidget(),
+        '/main_screen': (context) => const MainScreenWidget(),
       },
       initialRoute: '/auth',
     );
