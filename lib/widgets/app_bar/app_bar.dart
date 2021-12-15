@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:themoviedb/resources/resources.dart';
+import 'package:themoviedb/theme/colors.dart';
 
 class AppBarWidget extends StatefulWidget {
   AppBarWidget(
     this.scaffoldKey, {
     Key? key,
   }) : super(key: key);
+
   GlobalKey<ScaffoldState> scaffoldKey;
 
   @override

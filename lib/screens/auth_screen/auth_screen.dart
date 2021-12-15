@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:themoviedb/Theme/button_style.dart';
+import 'package:themoviedb/theme/colors.dart';
 import 'package:themoviedb/widgets/app_bar/app_bar.dart';
 import 'package:themoviedb/widgets/drawer/app_drawer.dart';
 import 'package:themoviedb/widgets/info_box/info_block.dart';
@@ -48,10 +49,9 @@ class _HeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const textStyle = TextStyle(color: Colors.black, fontSize: 16);
-    const accentColor = Color(0xFF01B4E4);
 
     return Container(
-      color: Colors.white,
+      color: AppColors.backgroundColorApp,
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -79,7 +79,7 @@ class _HeaderWidget extends StatelessWidget {
                   text: "Click here",
                   style: const TextStyle(
                     fontSize: 16,
-                    color: accentColor,
+                    color: AppColors.linkButtonColor,
                     decoration: TextDecoration.underline,
                   ),
                   recognizer: TapGestureRecognizer()
@@ -107,7 +107,7 @@ class _HeaderWidget extends StatelessWidget {
                   text: "click here",
                   style: const TextStyle(
                     fontSize: 16,
-                    color: accentColor,
+                    color: AppColors.linkButtonColor,
                     decoration: TextDecoration.underline,
                   ),
                   recognizer: TapGestureRecognizer()
