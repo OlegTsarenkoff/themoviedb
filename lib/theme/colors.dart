@@ -8,3 +8,13 @@ abstract class AppColors {
   static const borderColor = Colors.black12;
   static const greyColor = Colors.grey;
 }
+
+abstract class ProgressBarColors {
+  static const fillColor = Color.fromARGB(255, 10, 23, 25);
+  static const redLineColor = Color.fromARGB(255, 203, 13, 13);
+  static const yellowLineColor = Color.fromARGB(255, 203, 203, 13);
+  static const greenLineColor = Color.fromARGB(255, 37, 203, 103);
+  static const redBaseColor = Color.fromARGB(255, 54, 10, 10);
+  static const yellowBaseColor = Color.fromARGB(255, 54, 54, 10);
+  static const greenBaseColor = Color.fromARGB(255, 25, 54, 31);
+}
