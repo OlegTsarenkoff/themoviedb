@@ -7,7 +7,7 @@ import 'package:themoviedb/widgets/drawer/app_drawer.dart';
 import 'package:themoviedb/widgets/info_box/info_block.dart';
 
 class AuthWidget extends StatefulWidget {
-  AuthWidget({Key? key}) : super(key: key);
+  const AuthWidget({Key? key}) : super(key: key);
 
   @override
   _AuthWidgetState createState() => _AuthWidgetState();
@@ -21,7 +21,7 @@ class _AuthWidgetState extends State<AuthWidget> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-          drawer: DrawerWidget(),
+          drawer: const DrawerWidget(),
           key: _key,
           body: CustomScrollView(
             slivers: [
@@ -83,9 +83,7 @@ class _HeaderWidget extends StatelessWidget {
                     decoration: TextDecoration.underline,
                   ),
                   recognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                      print('hikhk');
-                    }, // need link to registred
+                    ..onTap = () {}, // need link to registred
                 ),
                 const TextSpan(
                   text: " to get started.",
@@ -156,9 +154,7 @@ class __FormWidgetState extends State<_FormWidget> {
     setState(() {});
   }
 
-  void _resetPassword() {
-    print("reset password");
-  }
+  void _resetPassword() {}
 
   @override
   Widget build(BuildContext context) {

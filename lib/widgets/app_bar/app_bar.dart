@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:themoviedb/resources/resources.dart';
-import 'package:themoviedb/theme/colors.dart';
 
 class AppBarWidget extends StatefulWidget {
   AppBarWidget(
@@ -49,13 +48,9 @@ class _AppBarWidgetState extends State<AppBarWidget> {
         splashRadius: 20,
       );
 
-  _onTapProfile() {
-    print('profile');
-  }
+  _onTapProfile() {}
 
-  _onTapSearch() {
-    print('search');
-  }
+  _onTapSearch() {}
 
   _onTapMenu() {
     widget.scaffoldKey.currentState?.openDrawer();

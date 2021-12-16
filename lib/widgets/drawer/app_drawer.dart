@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:themoviedb/Theme/colors.dart';
 
 class DrawerWidget extends StatefulWidget {
-  DrawerWidget({Key? key}) : super(key: key);
+  const DrawerWidget({Key? key}) : super(key: key);
 
   @override
   _DrawerWidgetState createState() => _DrawerWidgetState();
