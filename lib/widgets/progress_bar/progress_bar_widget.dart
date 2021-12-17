@@ -13,28 +13,21 @@ class ProgressBarWidget extends StatefulWidget {
 class _ProgressBarWidgetState extends State<ProgressBarWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppColors.backgroundColorApp,
-      child: const Center(
-          child: SizedBox(
-        width: 100,
-        height: 100,
+    return const Center(
         child: RadialPercentWidget(
-          percent: 0.58,
-          fillColor: ProgressBarColors.fillColor,
-          lineColor: ProgressBarColors.greenLineColor,
-          baseLineColor: ProgressBarColors.greenBaseColor,
-          lineWidth: 5,
-          child: Text(
-            '58%',
-            style: TextStyle(
-              fontSize: 16,
-              color: AppColors.backgroundColorApp,
-            ),
-          ),
+      percent: 0.58,
+      fillColor: ProgressBarColors.fillColor,
+      lineColor: ProgressBarColors.greenLineColor,
+      baseLineColor: ProgressBarColors.greenBaseColor,
+      lineWidth: 5,
+      child: Text(
+        '58%',
+        style: TextStyle(
+          fontSize: 16,
+          color: AppColors.backgroundColorApp,
         ),
-      )),
-    );
+      ),
+    ));
   }
 }
 

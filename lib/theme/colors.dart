@@ -7,6 +7,8 @@ abstract class AppColors {
   static const backgroundColorApp = Colors.white;
   static const borderColor = Colors.black12;
   static const greyColor = Colors.grey;
+  static const infoMovieBoxBackgrnd = Color.fromARGB(255, 21, 13, 14);
+  static const infoMovieRating = Color.fromARGB(255, 18, 11, 11);
 }
 
 abstract class ProgressBarColors {

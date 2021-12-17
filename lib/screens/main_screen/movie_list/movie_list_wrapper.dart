@@ -97,7 +97,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
     return Stack(children: [
       ListView.builder(
         padding: const EdgeInsets.only(top: 80),
-        physics: const NeverScrollableScrollPhysics(),
+        //physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemCount: _filteredMovies.length,
         itemExtent: 163,

@@ -27,7 +27,8 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
               child: Column(
                 children: const [
                   MainMovieList(),
-                  InfoBlockBottom(),
+
+                  //InfoBlockBottom(),
                 ],
               ),
             ),

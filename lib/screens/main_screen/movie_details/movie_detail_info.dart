@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:themoviedb/resources/resources.dart';
 import 'package:themoviedb/theme/colors.dart';
@@ -9,15 +11,38 @@ class MovieDetailInfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: const [
-        _TopPosterWidget(),
-        _RatingMovieWidget(),
-        Padding(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const _TopPosterWidget(),
+        const Padding(
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           child: _MovieNameWidget(),
         ),
-        _SummerWidget(),
+        const _RatingMovieWidget(),
+        const _SummerWidget(),
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: _OverviewWidget(),
+        ),
+        const Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: _DescriptionWidget(),
+        ),
+        const SizedBox(height: 30),
+        const _PeopleWidgets(),
+        const SizedBox(height: 30),
       ],
+    );
+  }
+
+  Text _OverviewWidget() {
+    return const Text(
+      'Overview',
+      style: TextStyle(
+        color: Colors.white,
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+      ),
     );
   }
 }
@@ -48,16 +73,27 @@ class _RatingMovieWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        TextButton(onPressed: () {}, child: const Text('User Score')),
-        Container(
-          height: 15,
-          width: 2,
-          color: AppColors.greyColor,
+        Row(
+          children: [
+            const SizedBox(
+              width: 60,
+              height: 60,
+              child: ProgressBarWidget(),
+            ),
+            TextButton(onPressed: () {}, child: const Text('User Score')),
+          ],
         ),
+        Container(height: 15, width: 2, color: AppColors.greyColor),
         TextButton(
           onPressed: () {},
-          child: const Text('Play Trayler'),
+          child: Row(
+            children: const [
+              Icon(Icons.play_arrow),
+              Text('Play Trayler'),
+            ],
+          ),
         ),
       ],
     );
@@ -111,6 +147,74 @@ class _SummerWidget extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _DescriptionWidget extends StatelessWidget {
+  const _DescriptionWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Text(
+      'After finding a host body in investigative reporter Eddie Brock, the alien symbiote must face a new enemy, Carnage, the alter ego of serial killer Cletus Kasady.',
+      style: TextStyle(
+        color: Colors.white,
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+      ),
+    );
+  }
+}
+
+class _PeopleWidgets extends StatelessWidget {
+  const _PeopleWidgets({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    const nameStyle = TextStyle(
+      color: Colors.white,
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+    );
+    const jobTilteStyle = TextStyle(
+      color: Colors.white,
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+    );
+    return Row(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: const [
+          Text('Kelly Marcel', style: nameStyle),
+          Text('Screenplay, Story', style: jobTilteStyle),
+          SizedBox(height: 20),
+          Text('Tom DeFalco', style: nameStyle),
+          Text('Characters', style: jobTilteStyle),
+          SizedBox(height: 20),
+          Text('David Michelinie', style: nameStyle),
+          Text('Characters', style: jobTilteStyle),
+          SizedBox(height: 20),
+          Text('Tom Hardy', style: nameStyle),
+          Text('Story', style: jobTilteStyle),
+        ]),
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: const [
+          Text('Todd Mcfarlane', style: nameStyle),
+          Text('Characters', style: jobTilteStyle),
+          SizedBox(height: 20),
+          Text('Mark Bagley', style: nameStyle),
+          Text('Characters', style: jobTilteStyle),
+          SizedBox(height: 20),
+          Text('Andy Serkis', style: nameStyle),
+          Text('Director', style: jobTilteStyle),
+          SizedBox(height: 20),
+          Text(' ', style: nameStyle),
+          Text(' ', style: jobTilteStyle),
+        ]),
+      ],
     );
   }
 }
