@@ -29,7 +29,7 @@ class _MovieDetailsState extends State<MovieDetails> {
           AppBarWidget(_key),
           SliverToBoxAdapter(
             child: SingleChildScrollView(
-              child: Container(
+              child: SizedBox(
                 width: double.infinity,
                 height: 800,
                 child: ColoredBox(
